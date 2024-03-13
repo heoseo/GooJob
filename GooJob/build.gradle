@@ -1,0 +1,57 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.goojob.api'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// swagger url === localhost:8080/swagger-ui/index.html
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+	// JPA
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	//SMTP
+	//implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	//thymeleaf
+	//implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	//security
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	//implementation 'org.springframework.security:spring-security-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+jar {
+	// Dokerfile 생성하면서 설정함. jar 파일이 2개가 생기며 Docker Image 가 생성되지 않을 수 있다.  (Boot 2.5v 이후)
+	enabled = false
+}
