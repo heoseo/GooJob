@@ -1,0 +1,40 @@
+server: 
+  port: 8080
+spring:
+  profiles:
+    active: local
+  jpa:
+    database: mysql
+    hibernate.ddl-auto: create #create / create-drop / update / none
+    properties:
+      hibernate:
+        physical-physical_naming_strategy: me.kevin.configuration.CamelCaseToSnakeAndUpperCaseStrategy
+        format_sql: true        
+        use_sql_comments: true  # 주석 표시
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/GooJob?serverTimezone=Asia/Seoul
+    username: root
+    password: admin
+    
+    
+#########################################
+
+logging:
+  level:
+    root: WARN
+    com:
+      goojob: DEBUG
+    #org:
+    #  springframework:
+    #    boot:
+    #      autoconfigure: WARN
+    #    beans:
+    #      factory:
+    #        support:
+    #          DefaultListableBeanFactory: WARN
+      hibernate:
+        sql: DEBUG  
+        type:
+          descriptor:
+            sql: trace # 파라미터 값 표출
